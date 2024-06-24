@@ -3,13 +3,9 @@ const Tour = require('./../../models/tourModel');
 
 const fs = require('fs');
 
-mongoose
-  .connect(
-    `mongodb+srv://apoorv:aRrFcKeZ1RORIzxL@cluster0.wjthyde.mongodb.net/natours?retryWrites=true&w=majority&appName=Cluster0`
-  )
-  .then((con) => {
-    console.log('db connection is succesfull');
-  });
+mongoose.connect(`<MONGODB URI>`).then((con) => {
+  console.log('db connection is succesfull');
+});
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8')

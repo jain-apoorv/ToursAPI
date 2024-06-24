@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose
   .connect(
-    `mongodb+srv://apoorv:aRrFcKeZ1RORIzxL@cluster0.wjthyde.mongodb.net/natours?retryWrites=true&w=majority&appName=Cluster0`
+    `<MONGODB URI>`
     // {
     //   useNewUrlParser: true,
     //   // useCreateIndex: true,
