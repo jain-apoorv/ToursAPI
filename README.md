@@ -4,6 +4,8 @@ ToursAPI is a powerful and flexible API designed for managing and retrieving tou
 
 ## Demonstration
 
+Explore the API using [ToursAPI](https://documenter.getpostman.com/view/25561480/2sA3dsnZzb)
+
 The api is hosted on [https://toursapi-apoorv.onrender.com](https://toursapi-apoorv.onrender.com)
 
 Following endpoints can be accessed.
