@@ -66,7 +66,11 @@ exports.getAllTours = async function (req, res) {
   try {
     let query = Tour.find();
 
-    const ans = new APIfeatures(query, req.query).filter().sort().field();
+    const ans = new APIfeatures(query, req.query)
+      .filter()
+      .sort()
+      .field()
+      .paging();
 
     const allTours = await ans.query;
     // return arrays of all the document.

@@ -74,12 +74,6 @@ const schemaa = new mongoose.Schema(
   }
 );
 
-schemaa.virtual('durationWeeks').get(function (req, res) {
-  return this.duration / 7;
-});
-schemaa.pre('save', function () {
-  console.log(this);
-});
 const Tour = mongoose.model('Tour', schemaa); // like a constructor function.
 
 module.exports = Tour;
