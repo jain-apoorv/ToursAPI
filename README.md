@@ -70,7 +70,7 @@ Following endpoints can be accessed.
 
 ## Installation
 
-To get started with ToursAPI, you need to follow these steps:
+To install ToursAPI locally, you need to follow these steps:
 
 1. **Clone the Repository:**
    ```bash
