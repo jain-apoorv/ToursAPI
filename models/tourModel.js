@@ -16,7 +16,7 @@ const schemaa = new mongoose.Schema(
 
     maxGroupSize: {
       type: Number,
-      required: [true, 'a tour must have a group size'],
+      required: [true, 'A tour must have a group size'],
     },
 
     difficulty: {
@@ -29,13 +29,11 @@ const schemaa = new mongoose.Schema(
       required: [true, 'A tour must have a price'],
     },
 
-    priceDiscount: {
-      type: Number,
-    },
+    priceDiscount: Number,
 
     summary: {
       type: String,
-      trim: true, // removes thewhitespace in the end and beginning gets cut.
+      trim: true,
       required: [true, 'A tour must have a summary'],
     },
 
@@ -46,17 +44,19 @@ const schemaa = new mongoose.Schema(
 
     imageCover: {
       type: String,
-      required: [true, 'a tour must have  an image'],
+      required: [true, 'A tour must have an image'],
     },
 
     images: [String],
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-      select: false,
-    },
 
     startDates: [Date],
+
+    spotsLeftPerDate: {
+      type: [Number],
+      default: function () {
+        return this.startDates?.map(() => this.maxGroupSize) || [];
+      },
+    },
 
     ratingsAverage: {
       type: Number,
@@ -67,6 +67,44 @@ const schemaa = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+      },
+    ],
+
+    startLocation: {
+      // GeoJSON
+      type: {
+        type: String,
+        default: 'Point',
+        enum: ['Point'],
+      },
+      coordinates: [Number],
+      address: String,
+      description: String,
+    },
+
+    locations: [
+      {
+        type: {
+          type: String,
+          default: 'Point',
+          enum: ['Point'],
+        },
+        coordinates: [Number],
+        description: String,
+        day: Number,
+      },
+    ],
+
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      select: false,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -74,6 +112,13 @@ const schemaa = new mongoose.Schema(
   }
 );
 
-const Tour = mongoose.model('Tour', schemaa); // like a constructor function.
+// schemaa.virtual('durationWeeks').get(function (req, res) {
+//   return this.duration / 7;
+// });
+// schemaa.pre('save', function () {
+//   console.log(this);
+// });
+
+const Tour = mongoose.model('Tour', schemaa); // like a constructor function. telling Mongoose to create or access a MongoDB collection named "tours" plural
 
 module.exports = Tour;
