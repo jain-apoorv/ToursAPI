@@ -1,7 +1,7 @@
 // src/store/slices/bookingSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTourById, fetchTours } from "./tourSlice";
-const apiURL = import.meta.env.BACKEND_URL;
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 // Fetch the current user's bookings
 export const fetchBookings = createAsyncThunk(
   "booking/fetchBookings",

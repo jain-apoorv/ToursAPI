@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { resetBookingState } from "./bookingSlice";
 import { resetTourState } from "./tourSlice";
-const apiURL = import.meta.env.BACKEND_URL;
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 const saveToLocalStorage = (user, token) => {
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("token", token);

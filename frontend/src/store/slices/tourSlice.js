@@ -1,6 +1,6 @@
 // src/redux/tourSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-const apiURL = import.meta.env.BACKEND_URL;
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 // Fetch all tours
 export const fetchTours = createAsyncThunk(
   "tour/fetchTours",
