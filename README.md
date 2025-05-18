@@ -1,10 +1,14 @@
 # Yatra: A Full-Stack Tour Booking Application
 
-A full-stack Tour Booking application comprising a robust **Backend API** (YatraAPI) and a responsive **React Frontend**. YatraAPI offers CRUD operations for tours, advanced querying, secure user authentication, and booking management, while the React frontend delivers an engaging user experience with map integration, guide management, and complete booking workflows.
+A full-stack Tour Booking application comprising a robust **Backend YatraAPI**  and a responsive **React Frontend**. YatraAPI offers CRUD operations for tours, advanced querying, secure user authentication, and booking management, while the React frontend delivers an engaging user experience with complete booking workflows.
 
+> **Note:** You must **signup** or **login** before accessing tours, tour details, booking workflows, and other protected functionalities.
+
+- **Backend Hosted**: [Yatra API](https://toursapi-apoorv.onrender.com/api/v1/tours)  
+- **Frontend Hosted**: [https://yatra-8tns.onrender.com/](https://yatra-8tns.onrender.com/)  
 ---
 
-## 🔧 Backend (YatraAPI)
+## Backend (YatraAPI)
 
 ### Core Functionality
 
@@ -35,11 +39,11 @@ A full-stack Tour Booking application comprising a robust **Backend API** (Yatra
 | GET    | `/api/v1/users/me`               | Get current user profile (protected)       |
 | PATCH  | `/api/v1/users/me`               | Update user data (protected)               |
 | **Bookings**                                                  |                                            |
-| GET    | `/api/v1/bookings`               | Retrieve all bookings (admin)              |
+| GET    | `/api/v1/bookings`               | Retrieve bookings of the logged in user|
 | GET    | `/api/v1/bookings/:id`           | Retrieve a specific booking by ID          |
 | POST   | `/api/v1/bookings`               | Create a new booking (protected)           |
-| PATCH  | `/api/v1/bookings/:id`           | Update booking (protected/owner)           |
-| DELETE | `/api/v1/bookings/:id`           | Cancel a booking (protected/owner)         |
+| PATCH  | `/api/v1/bookings/:id`           | Update booking (protected)           |
+| DELETE | `/api/v1/bookings/:id`           | Cancel a booking (protected)         |
 
 
 ## Installation(backend)
@@ -58,3 +62,17 @@ To install yatraAPI locally, you need to follow these steps:
 4. **run the server**
    ```bash
    node server.js
+
+
+## Frontend (React)
+
+Check out the live demo: https://yatra-frontend.apoorv.com
+
+**Key Frontend Features:**
+- User signup/login with guarded routes
+- Responsive tour grid with filters & pagination
+- Tour details with carousel and guide section
+- Booking sidebar: add/remove passengers, confirm/cancel
+- State management via Redux Toolkit
+- myBookings: check the bookings; can cancel and edit passengers.
+
