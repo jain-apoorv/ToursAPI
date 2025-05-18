@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { resetBookingState } from "./bookingSlice";
 import { resetTourState } from "./tourSlice";
-
+const apiURL = import.meta.env.BACKEND_URL;
 const saveToLocalStorage = (user, token) => {
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("token", token);
@@ -16,7 +16,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (formData, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/v1/users/login", {
+      const res = await fetch(apiURL + "/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -40,7 +40,7 @@ export const signupUser = createAsyncThunk(
   "auth/signupUser",
   async (formData, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/v1/users/signup", {
+      const res = await fetch(apiURL + "/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

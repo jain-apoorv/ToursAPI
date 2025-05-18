@@ -1,13 +1,13 @@
 // src/redux/tourSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const apiURL = import.meta.env.BACKEND_URL;
 // Fetch all tours
 export const fetchTours = createAsyncThunk(
   "tour/fetchTours",
   async (_, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/v1/tours", {
+      const res = await fetch(apiURL + "/tours", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -25,7 +25,7 @@ export const fetchTourById = createAsyncThunk(
   async (tourId, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://127.0.0.1:3000/api/v1/tours/${tourId}`, {
+      const res = await fetch(apiURL + `/tours/${tourId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();

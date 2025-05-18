@@ -1,14 +1,14 @@
 // src/store/slices/bookingSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTourById, fetchTours } from "./tourSlice";
-
+const apiURL = import.meta.env.BACKEND_URL;
 // Fetch the current user's bookings
 export const fetchBookings = createAsyncThunk(
   "booking/fetchBookings",
   async (_, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/v1/bookings", {
+      const res = await fetch(apiURL + "/bookings", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -26,17 +26,14 @@ export const createBooking = createAsyncThunk(
   async ({ tourId, startDate, passengers }, { rejectWithValue, dispatch }) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(
-        `http://127.0.0.1:3000/api/v1/tours/${tourId}/createBooking`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ tour: tourId, startDate, passengers }),
-        }
-      );
+      const res = await fetch(apiURL + `/tours/${tourId}/createBooking`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ tour: tourId, startDate, passengers }),
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Booking failed");
       // refresh tours so spotsLeftPerDate is updated
@@ -59,17 +56,14 @@ export const updateBooking = createAsyncThunk(
     const token = localStorage.getItem("token");
     const { selectedTour } = getState().tour;
     try {
-      const res = await fetch(
-        `http://127.0.0.1:3000/api/v1/bookings/${bookingId}/updatePeople`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ passengersToAdd, passengersToDelete }),
-        }
-      );
+      const res = await fetch(apiURL + `/bookings/${bookingId}/updatePeople`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ passengersToAdd, passengersToDelete }),
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Update failed");
       // refresh tours & bookings
@@ -90,13 +84,10 @@ export const cancelBooking = createAsyncThunk(
     const token = localStorage.getItem("token");
     const { selectedTour } = getState().tour;
     try {
-      const res = await fetch(
-        `http://127.0.0.1:3000/api/v1/bookings/${bookingId}/cancel`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const res = await fetch(apiURL + `/bookings/${bookingId}/cancel`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Cancel failed");
       // refresh tours & bookings
