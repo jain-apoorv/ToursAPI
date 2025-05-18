@@ -66,7 +66,7 @@ To install yatraAPI locally, you need to follow these steps:
 
 ## Frontend (React)
 
-Check out the live demo: https://yatra-frontend.apoorv.com
+Check out the live demo: [https://yatra-frontend.apoorv.com](https://yatra-8tns.onrender.com/)
 
 **Key Frontend Features:**
 - User signup/login with guarded routes
