@@ -1,6 +1,7 @@
 const fs = require('fs');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
+//of no use
 const allUsers = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/users.json`)
 );
@@ -47,6 +48,10 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
+  // so due to protect we now which user want to change
+
+  // assuming only the existing fields are changed
+
   if (req.body.password || req.body.passwordConfirm) {
     return next(new AppError('This route is not for password updates!', 400));
   }
@@ -54,8 +59,8 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   const filteredBody = filterObj(req.body, 'name', 'email');
 
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
-    new: true,
-    runValidators: true,
+    new: true, // Return the updated document
+    runValidators: true, // Run Mongoose validators
   });
 
   res.status(200).json({

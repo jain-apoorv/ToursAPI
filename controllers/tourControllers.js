@@ -1,5 +1,6 @@
 const { Error } = require('mongoose');
 const Tour = require('./../models/tourModel');
+const catchAsync = require('./../utils/catchAsync');
 
 class APIfeatures {
   constructor(query, queryString) {
@@ -62,50 +63,53 @@ class APIfeatures {
   }
 }
 
-exports.getAllTours = async function (req, res) {
-  try {
-    let query = Tour.find();
+exports.getAllTours = catchAsync(async function (req, res) {
+  // try {
+  let query = Tour.find();
 
-    const ans = new APIfeatures(query, req.query)
-      .filter()
-      .sort()
-      .field()
-      .paging();
+  const ans = new APIfeatures(query, req.query)
+    .filter()
+    .sort()
+    .field()
+    .paging();
 
-    const allTours = await ans.query;
-    // return arrays of all the document.
-    res.status(200).json({
-      status: 'normal',
-      results: allTours.length,
-      data: {
-        allTours,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'failed',
-      meassage: err.message,
-    });
-  }
-};
+  const allTours = await ans.query;
+  // return arrays of all the document.
+  res.status(200).json({
+    status: 'normal',
+    results: allTours.length,
+    data: {
+      allTours,
+    },
+  });
+  // } catch (err) {
+  //   res.status(404).json({
+  //     status: 'failed',
+  //     meassage: err.message,
+  //   });
+  // }
+});
 
-exports.getTour = async function (req, res) {
-  try {
-    const tour = await Tour.findById(req.params.id);
-    // return the doc with that id // alternative to findOne() method.
-    res.status(200).json({
-      status: 'normal',
-      results: tour.length,
-      data: {
-        tour,
-      },
-    });
-  } catch {
-    res.status(404).json({
-      status: 'failed',
-    });
-  }
-};
+exports.getTour = catchAsync(async function (req, res) {
+  // try {
+  const tour = await Tour.findById(req.params.id).populate({
+    path: 'guides',
+    select: 'name photo role email',
+  });
+  // return the doc with that id // alternative to findOne() method.
+  res.status(200).json({
+    status: 'normal',
+    results: tour.length,
+    data: {
+      tour,
+    },
+  });
+  // } catch (err) {
+  //   res.status(404).json({
+  //     status: 'failed',
+  //   });
+  // }
+});
 
 exports.postTour = async function (req, res) {
   try {
@@ -156,18 +160,20 @@ exports.patchTour = async function (req, res) {
 };
 
 /// aggregation pipeline
+/// diff between query and aggregation pipelinef
 exports.getTourStats = async (req, res) => {
   try {
     const stats = await Tour.aggregate([
-      { $match: { ratingsAverage: { $gte: 4.5 } } },
+      { $match: { ratingsAverage: { $gte: 4.7 } } },
       {
         $group: {
-          _id: '$difficulty',
+          _id: '$difficulty', //property to group by
           tours: { $sum: 1 },
           avgRating: { $avg: '$ratingsAverage' },
           avgRatingQuantity: { $avg: '$ratingsQuantity' },
 
           avgPrice: { $avg: '$price' },
+          maxPrice: { $max: '$price' },
         },
       },
       {
