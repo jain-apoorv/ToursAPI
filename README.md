@@ -33,9 +33,8 @@ A full-stack Tour Booking application comprising a robust **Backend YatraAPI**  
 | GET    | `/api/v1/tours?page=2&limit=5`   | Pagination                                 |
 | GET    | `/api/v1/tours?price[gte]=500`   | Filter tours with price ≥ 500              |
 | **Users & Auth**                                              |                                            |
-| POST   | `/api/v1/auth/signup`            | Register a new user                        |
-| POST   | `/api/v1/auth/login`             | Login and receive JWT                      |
-| GET    | `/api/v1/auth/logout`            | Logout user (clear token)                  |
+| POST   | `/api/v1/usres/signup`            | Register a new user                        |
+| POST   | `/api/v1/users/login`             | Login and receive JWT                      |
 | GET    | `/api/v1/users/me`               | Get current user profile (protected)       |
 | PATCH  | `/api/v1/users/me`               | Update user data (protected)               |
 | **Bookings**                                                  |                                            |
