@@ -6,6 +6,8 @@ const { signup, login } = require('./../controllers/authController');
 
 const userRouter = express.Router();
 
+userRouter.use(authController.protect);
+
 userRouter.param('id', userControllers.checkID);
 
 userRouter.route('/').get(userControllers.getUsers);
