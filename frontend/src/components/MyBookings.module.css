@@ -1,0 +1,16 @@
+.myBookings {
+  padding-top: 2rem;
+}
+
+.myBookings .card {
+  cursor: pointer;
+}
+
+.myBookings .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.myBookings .card-title {
+  font-weight: bold;
+}

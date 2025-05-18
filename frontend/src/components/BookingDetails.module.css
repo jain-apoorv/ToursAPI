@@ -1,0 +1,52 @@
+.bookingDetails {
+  padding-top: 2rem;
+}
+
+.bookingDetails h1 {
+  font-size: 2.5rem;
+  color: #007bff;
+}
+
+.bookingDetails h4 {
+  font-size: 2rem;
+  color: #495057;
+}
+
+.bookingDetails p {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+.bookingDetails ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.bookingDetails ul li {
+  font-size: 1rem;
+  padding: 5px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bookingDetails .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bookingDetails .btn:hover {
+  background-color: #0056b3;
+}
+
+.bookingDetails .btn-primary {
+  margin-top: 15px;
+}
+
+.bookingDetails .text-danger {
+  font-size: 1.5rem;
+  color: red;
+}

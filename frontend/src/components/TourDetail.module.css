@@ -1,0 +1,23 @@
+.tourDetail {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .coverImage {
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .galleryImage {
+    max-height: 150px;
+    object-fit: cover;
+  }
+
+.tour-map-container {
+  margin-top: 20px; /* Adjust margin as needed */
+  height: 400px;    /* Set a height for the map */
+  width: 100%;      /* Make the map take up the full width of its container */
+}
+  
+  
