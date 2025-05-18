@@ -4,7 +4,7 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
-const { sendEmail } = require('../controllers/email');
+const { sendEmail } = require('./email');
 const crypto = require('crypto');
 
 const createJWT = function (id) {
