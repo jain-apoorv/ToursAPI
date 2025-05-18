@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+const apiURL = import.meta.env.VITE_BACKEND_URL;
 
 const TourCard = ({ tour }) => {
   return (
@@ -7,7 +8,7 @@ const TourCard = ({ tour }) => {
         {/* Tour Image */}
 
         <img
-          src={`http://127.0.0.1:3000/img/tours/${tour.imageCover}`}
+          src={`https://toursapi-apoorv.onrender.com/img/tours/${tour.imageCover}`}
           className="card-img-top rounded-top"
           alt={tour.name}
           style={{ height: "200px", objectFit: "cover" }}

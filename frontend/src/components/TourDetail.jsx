@@ -59,7 +59,7 @@ const TourDetail = () => {
       <h1 className="mb-4 fw-bold text-primary">{tour.name}</h1>
 
       <img
-        src={`http://127.0.0.1:3000/img/tours/${tour.imageCover}`}
+        src={`https://toursapi-apoorv.onrender.com/img/tours/${tour.imageCover}`}
         alt={tour.name}
         className={`img-fluid rounded shadow-sm mb-4 ${styles.coverImage}`}
       />
@@ -127,7 +127,7 @@ const TourDetail = () => {
             onClick={() => openModal(img)}
           >
             <img
-              src={`http://127.0.0.1:3000/img/tours/${img}`}
+              src={`https://toursapi-apoorv.onrender.com/img/tours/${img}`}
               alt={`Tour scene ${index + 1}`}
               className={`img-fluid rounded shadow-sm ${styles.galleryImage}`}
             />
@@ -169,7 +169,7 @@ const TourDetail = () => {
             <div className="modal-content">
               <div className="modal-body p-0">
                 <img
-                  src={`http://127.0.0.1:3000/img/tours/${selectedImage}`}
+                  src={`https://toursapi-apoorv.onrender.com/img/tours/${selectedImage}`}
                   alt="Expanded view"
                   className="img-fluid w-100 rounded"
                 />
